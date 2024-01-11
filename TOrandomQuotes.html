@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="TORQ.css"/>
+  <title>The Office: Random Quotes</title>
+</head>
+
+<body>
+  <audio autoplay loop>
+    <source src="The Office.mp3" type="audio/mpeg">
+</audio>
+  <div id="wrapper">
+    <div id="quote-box">
+      <div class="quote-text">
+        <i id="quotmark" class="fa fa-quote-left"></i><span id="text"></span>
+      </div>
+      <div class="quote-author">
+        <span id="author"></span>
+      </div>
+      <div class="buttons">
+
+        <a class="button" id="tweet-quote" target="_blank" title="Tweet this quote!">
+          <i class="fa fa-twitter"></i></i>
+        </a>
+        <a class="button" id="tumblr-quote" target="_blank" title="Post this on Tumblr!">
+          <i class="fa fa-tumblr"></i>
+        </a>
+        <button class="button" id="new-quote">New quote</button>
+      </div>
+    </div>
+  <div class="developed-by">
+      <p>by <a class="dev" href="https://codepen.io/Lou-Cabangon">Lou</a></p>
+      <p>inspired by work from <a class="dev" href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const quotes = [
+  {
+    quote: "Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Whenever I'm about to do something, I think, 'Would an idiot do that?' and if they would, I do not do that thing.",
+    author: "Dwight Schcrute"
+  },
+  {
+    quote: "I knew exactly what to do. But in a much more real sense, I had no idea what to do.",
+    author: "Michael Scott"
+  },
+  {
+    quote:
+      "I wish there was a way to know you're in the good old days before you've actually left them.",
+    author: "Andy Bernard"
+  },
+  {
+    quote: "I'm not superstitious...but I'm a little stitious.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Early bird gets the... worm.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "I hate the idea that someone out there hates me. I even hate thinking that al-Qaeda hates me. I think if they got to know me, they wouldn’t hate me.",
+    author: "Pam Beesly"
+  },
+  {
+    quote: "Bears, beets, Battlestar Galactica.",
+    author: "Jim Halpert (pretending to be Dwight)"
+  },
+  {
+    quote: "The worst thing about prison was the Dementors..",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Drive fast, leave a sexy corpse.",
+    author: "Stanley Hudson"
+  },
+  {
+    quote: "I am about to do something very bold in this job that I’ve never done before: try.",
+    author: "Jim Halpert"
+  },
+  {
+    quote: "Me think, why waste time say lot word, when few word do trick?",
+    author: "Kevin Malone"
+  },
+  {
+    quote: "Do I need to be liked? Absolutely not. I like to be liked. I enjoy being liked. I have to be liked. But it’s not like, this compulsive need to be liked, like my need to be praised.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "You guys I’m, like, really smart now. You don’t even know. You could ask me, 'Kelly, what’s the biggest company in the world?' And I’d be like, 'blah blah blah, blah blah blah blah blah blah.' Giving you the exact right answer.",
+    author: "Kelly Kapoor"
+  },
+  {
+    quote: "When you’re a kid, you assume your parents are soulmates. My kids are going to be right about that.",
+    author: "Pam Beesley"
+  },
+  {
+    quote: "Yeah, I have a lot of questions. First of all: How dare you?",
+    author: "Kelly Kapoor"
+  },
+  {
+    quote: "I’ve been involved in a number of cults, both a leader and a follower. You have more fun as a follower, but you make more money as a leader.",
+    author: "Creed Bratton"
+  },
+  {
+    quote: "Dwight, you ignorant slut.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "I am a black belt in gift wrapping.",
+    author: "Jim Halpert"
+  },
+  {
+    quote: "Tell ya one thing, I’m not gonna be a good mom tonight.",
+    author: "Meredith Palmer"
+  },
+  {
+    quote: "Boy, have you done lost your mind? Cause I’ll help you find it!",
+    author: "Stanley Hudson"
+  },
+  {
+    quote: "And I feel God in this Chili’s tonight.",
+    author: "Pam Beesley"
+  },
+  {
+    quote: "I normally don’t enjoy making people laugh.",
+    author: "Angela Martin"
+  },
+  {
+    quote: "Fool me once, strike one. But fool me twice...strike three.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "I wonder what people like about me. Probably my jugs.",
+    author: "Phyllis Vance"
+  },
+  {
+    quote: "How is it possible that in five years, I’ve had two engagements and only one chair?",
+    author: "Pam Beesley"
+  },
+  {
+    quote: "I say dance, they say, ‘How high?",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Stanley just drank OJ out of my mug and didn’t seem to realize that it wasn’t his hot coffee. So, the question has to be asked: Is there no limit to what he won’t notice?",
+    author: "Jim Halpert"
+  },
+  {
+    quote: "I’m fast. To give you a reference point. I’m somewhere between a snake and a mongoose. And a panther.",
+    author: "Dwight Schrute"
+  },
+  {
+    quote: "The Dunder Mifflin stock symbol is D.M.I. Do you know what that stands for? Dummies, Morons, and Idiots. Because that’s what you’d have to be to own it. And as one of those idiots, I believe the board owes me answers.",
+    author: "Oscar Martinez"
+  },
+  {
+    quote: "Yeah, I’m not a temp anymore. I got Jim’s old job. Which means at my 10-year high school reunion, it will not say ‘Ryan Howard is a temp.’ It will say, ‘Ryan Howard is a junior sales associate at a mid-range paper supply firm.’ That’ll show ’em.",
+    author: "Ryan Howard"
+  },
+  {
+    quote: "I’m always thinking one step ahead, like a...carpenter that makes stairs.",
+    author: "Andy Bernard"
+  },
+  {
+    quote: "Today, smoking is going to save lives.",
+    author: "Dwight Schrute"
+  },
+  {
+    quote: "Rit-dit-dit-do-doo!",
+    author: "Andy Bernard"
+  },
+  {
+    quote: "Why are you the way that you are?",
+    author: "Michael Scott"
+  },
+  {
+    quote: "How the turn tables...",
+    author: "Michael Scott"
+  },
+  {
+    quote: "I'm not superstitious, but I am a little stitious.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "How the turn tables...",
+    author: "Michael Scott"
+  },
+  {
+    quote: "How the turn tables...",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Today, I'm headed to the job fair at Valley View HS to find some new interns. Wanna get some fresh blood, youth-anize this place.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "No, Dwight! RESPECT. R-E-S-P-spi-T. Find out what it means to me.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "You know what they say in the Bible about forgiveness: Forgiveness is next to godliness.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "It's really beyond words. It's really 'incalculacable'.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "That has sort of an oaky afterbirth.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "I like this chair, offers good support. It is 'erclenomically' correct. It's a good chair.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "The old Michael Scott might've taken this but not the new Michael Scott. They are in for a bitter surprise. I am not to be truffled with.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Tell him to call me ASAP as possible. Thanks.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "I am downloading some N3P music for a CD mixtape.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "A real relationship can't be forced. It should just come about 'effort-lent-lessly'.",
+    author: "Michael Scott"
+  },
+  {
+    quote: "Yeah, well. Maybe next time you will estimate.",
+    author: "Michael Scott"
+  }
+];
+
+let colors = [
+  '#16a085',
+  '#27ae60',
+  '#2c3e50',
+  '#f39c12',
+  '#e74c3c',
+  '#9b59b6',
+  '#FB6964',
+  '#342224',
+  '#472E32',
+  '#BDBB99',
+  '#77B1A9',
+  '#73A857'
+]
+
+let currentQuote = "",
+  currentAuthor = "";
+
+function getRandomQuote() {
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
+function getRandomColor() {
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function getQuote() {
+  let randomQuote = getRandomQuote();
+  let randomColor = getRandomColor();
+  currentQuote = randomQuote.quote;
+  currentAuthor = randomQuote.author;
+
+  $("#tweet-quote").attr(
+    "href",
+    "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" +
+      encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
+  );
+
+  $("#tumblr-quote").attr(
+    "href",
+    "https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=" +
+      encodeURIComponent(currentAuthor) +
+      "&content=" +
+      encodeURIComponent(currentQuote) +
+      "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button"
+  );
+
+  $('#quote-box').animate({opacity: 0}, 500, function(){
+   $(this).animate({ opacity: 1 }, 500);
+  $("#text").text(randomQuote.quote);
+  $("#author").html(randomQuote.author);
+});
+  $('body').css('background-color', randomColor);
+  $('body').css('color', randomColor);
+  $('.button').css('background-color', randomColor);
+}
+
+$(document).ready(function () {
+  getQuote();
+
+  $("#new-quote").on("click", getQuote);
+});
+</script>
+
+</html>

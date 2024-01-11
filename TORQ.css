@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+#quote-box {
+  width: 80%;
+  margin: 100px auto 0 auto;
+  padding: 50px 0;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quote-text {
+  width: 80%;
+  text-align: center;
+  margin: 5px auto 0 auto;
+  padding: 20px 0;
+  font-weight: 500;
+  font-size: 3.5rem;
+}
+
+.quote-author {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 5px auto 0 auto;
+}
+
+.button, #new-quote {
+  font-size: 2rem;
+  padding: 5px;
+  background-color: red;
+  color: white;
+  width: 50px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0 50px;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.buttons {
+  width: 77.5%;
+  display: block;
+  padding: 8px 16px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+#tweet-quote, #tumblr-quote {
+  float: left;
+}
+
+#new-quote {
+  float: right;
+  width: 130px;
+  font-size: 1.5rem;
+  padding: 10px 0;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#author {
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
+#quotmark {
+  font-size: 3rem;
+  margin-right: 5px;
+}
+
+.developed-by {
+  color: white;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.dev {
+  font-style: italic;
+  font-weight: 500;
+  color: white;
+}
